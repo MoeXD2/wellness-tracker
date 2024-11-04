@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Tracking - WellnessTracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="brand-icon">🌟</span>
+                <span class="brand-text">WellnessTracker</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/fitness.html">Fitness</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/sleep.html">Sleep</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/templates/diet.html">Diet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white ms-2" href="/templates/dashboard.html">My Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <form class="tracking-form" data-category="diet">
+            <!-- Page Header -->
+            <header class="page-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <span class="badge bg-primary-subtle text-primary mb-3">Diet Tracking</span>
+                            <h1 class="display-5 fw-bold mb-3">Track Your Diet</h1>
+                            <p class="lead">Record your meals and nutrition.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="/static/img/diet_overview.jpg" alt="Fitness Tracking" class="img-fluid rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="mb-4">
+                <label class="form-label">Meal Type</label>
+                <select class="form-select" name="mealType" required>
+                    <option value="">Select meal type...</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Snack</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Time</label>
+                <input type="time" class="form-control" name="mealTime" required>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label">Calories</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="calories" min="0" required>
+                        <span class="input-group-text">kcal</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Water Intake</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="water" min="0" step="0.1">
+                        <span class="input-group-text">liters</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Food Categories (select all that apply)</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="foodCategories" value="proteins" id="proteins">
+                            <label class="form-check-label" for="proteins">Proteins</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="foodCategories" value="carbs" id="carbs">
+                            <label class="form-check-label" for="carbs">Carbohydrates</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="foodCategories" value="fats" id="fats">
+                            <label class="form-check-label" for="fats">Healthy Fats</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="foodCategories" value="vegetables" id="vegetables">
+                            <label class="form-check-label" for="vegetables">Vegetables</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="foodCategories" value="fruits" id="fruits">
+                            <label class="form-check-label" for="fruits">Fruits</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="foodCategories" value="dairy" id="dairy">
+                            <label class="form-check-label" for="dairy">Dairy</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Mood After Eating</label>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="mood" value="energized" id="energized" required>
+                    <label class="btn btn-outline-secondary" for="energized">Energized</label>
+
+                    <input type="radio" class="btn-check" name="mood" value="satisfied" id="satisfied">
+                    <label class="btn btn-outline-secondary" for="satisfied">Satisfied</label>
+
+                    <input type="radio" class="btn-check" name="mood" value="tired" id="tired">
+                    <label class="btn btn-outline-secondary" for="tired">Tired</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Notes (optional)</label>
+                <textarea class="form-control" name="notes" rows="3" placeholder="Description of meals, ingredients, etc..."></textarea>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Save Meal Record</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Success!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Your meal record has been saved.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
