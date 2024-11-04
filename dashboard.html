@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - WellnessTracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="brand-icon">🌟</span>
+                <span class="brand-text">WellnessTracker</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/fitness.html">Fitness</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/sleep.html">Sleep</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/diet.html">Diet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white ms-2 active" href="/templates/dashboard.html">My Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <h1 class="mb-4">Wellness Dashboard</h1>
+        
+        <!-- Time Range Selector -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <select class="form-select" id="timeRange">
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        <span class="me-3">Last updated: <span id="lastUpdated">-</span></span>
+                        <button class="btn btn-primary" id="refreshData">
+                            Refresh Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Fitness Summary</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h2 id="totalWorkouts">-</h2>
+                                <p class="text-muted mb-0">Total Workouts</p>
+                            </div>
+                            <div>
+                                <h2 id="avgDuration">-</h2>
+                                <p class="text-muted mb-0">Avg Duration (min)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Sleep Summary</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h2 id="avgSleepHours">-</h2>
+                                <p class="text-muted mb-0">Avg Hours</p>
+                            </div>
+                            <div>
+                                <h2 id="avgSleepQuality">-</h2>
+                                <p class="text-muted mb-0">Avg Quality</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Diet Summary</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h2 id="avgCalories">-</h2>
+                                <p class="text-muted mb-0">Avg Calories</p>
+                            </div>
+                            <div>
+                                <h2 id="avgWater">-</h2>
+                                <p class="text-muted mb-0">Avg Water (L)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row g-4">
+            <!-- Fitness Chart -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Fitness Activity</h5>
+                        <canvas id="fitnessChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Sleep Chart -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Sleep Pattern</h5>
+                        <canvas id="sleepChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Diet Charts -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Calorie Intake</h5>
+                        <canvas id="calorieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Food Categories -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Categories Distribution</h5>
+                        <canvas id="foodCategoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
